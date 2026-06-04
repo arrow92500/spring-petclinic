@@ -4,7 +4,7 @@ test1:
     steps:
       - name: test after build
         run: echo "after build"
-  test2:
+test2:
     runs-on: ubuntu-latest
     steps:
       - name: test in parallel with build
