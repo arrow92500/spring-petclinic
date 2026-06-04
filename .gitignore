@@ -47,4 +47,4 @@ _site/
 *.css
 !petclinic.css
 
-!**/my-custom-action-js/node_modules/**
+**/node_modules/
