@@ -26,26 +26,3 @@ jobs:
         run: ./mvnw spring-boot:build-image -DskipTests
       - name: Set lower case owner name
         run: echo "OWNER_LOWER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-  update-gitops:
-    needs: build-image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cloner le dépôt d'infrastructure
-        uses: actions/checkout@v4
-        with:
-          repository: arrow92500/kubernetes
-          token: ${{ secrets.GITOPS_PAT }}
-          path: kustomize
-      - name: Mettre à jour la version de l'image
-        working-directory: ./kustomize/overlays/dev
-        run: |
-          kustomize edit set image spring-petclinic=ghcr.io/${{ env.OWNER_LOWER }}/spring-petclinic:${{ github.sha }}
-      - name: Commit et Push vers le dépôt d'infrastructure
-        working-directory: ./kustomize
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-          git add .
-          git commit -m "Auto-update image to tag ${{ github.sha }}"
-          git push
