@@ -72,7 +72,7 @@ jobs:
           kustomize edit set image spring-petclinic=ghcr.io/${{ env.OWNER_LOWER }}/spring-petclinic:${{ github.sha }}
 
       - name: Commit et Push vers le dépôt d'infrastructure
-        working-directory: ./kustomize
+        working-directory: ./kustomize/overlays/dev
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
