@@ -67,7 +67,7 @@ jobs:
           path: infra-repo
 
       - name: Mettre à jour la version de l'image
-        working-directory: ./infra-repo/dev
+        working-directory: ./infra-repo/petclinic
         run: |
           kustomize edit set image spring-petclinic=ghcr.io/${{ env.OWNER_LOWER }}/spring-petclinic:${{ github.sha }}
 
