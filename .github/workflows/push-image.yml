@@ -62,7 +62,7 @@ jobs:
       - name: Cloner le dépôt d'infrastructure
         uses: actions/checkout@v4
         with:
-          repository: ${{ github.repository_owner }}/kubernetes
+          repository: ${{ github.repository_owner }}/kubernetes.git
           token: ${{ secrets.GITOPS_PAT }}
           path: kustomize
 
