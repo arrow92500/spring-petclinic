@@ -34,7 +34,7 @@ jobs:
             with:
               repository: arrow92500/kubernetes
               token: ${{ secrets.GITOPS_PAT }}
-              path: kustomize
+              path: kustomize/overlays/dev
             
           - name: Mettre à jour la version de l'image
             working-directory: ./kustomize/overlays/dev
